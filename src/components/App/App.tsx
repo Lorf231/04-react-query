@@ -3,7 +3,7 @@ import toast, { Toaster } from "react-hot-toast";
 import SearchBar from "../SearchBar/SearchBar.tsx";
 import MovieGrid from "../MovieGrid/MovieGrid.tsx";
 import { fetchMovies } from "../../services/movieService.ts";
-import type { Movie, MoviesResponse } from "../../types/movie.ts";
+import type { Movie } from "../../types/movie.ts";
 import MovieModal from "../MovieModal/MovieModal.tsx";
 import Loader from "../Loader/Loader.tsx";
 import ErrorMessage from "../ErrorMessage/ErrorMessage.tsx";
@@ -12,6 +12,13 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import ReactPaginate from "react-paginate";
 
 type MovieObj = Movie | null;
+
+interface MoviesResponse {
+  results: Movie[];
+  total_results: number;
+  total_pages: number;
+  page: number;
+}
 
 export default function App() {
   const [searchValue, setSearchValue] = useState<string>("");

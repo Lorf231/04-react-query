@@ -14,10 +14,3 @@ export interface Movie {
   popularity: number;
   video: boolean;
 }
-
-export interface MoviesResponse {
-  results: Movie[];
-  total_results: number;
-  total_pages: number;
-  page: number;
-}
