@@ -26,7 +26,7 @@ if (import.meta.env.DEV) {
 export const fetchMovies = async (
   query: string,
   page: number
-): Promise<MovieResponse> => {
+): Promise<MoviesResponse> => {
   if (!BEARER_TOKEN) {
     throw new Error(
       "TMDB API key is not configured. Please add VITE_TMDB_API_KEY to your .env file."
@@ -51,7 +51,11 @@ export const fetchMovies = async (
       },
     });
 
-    if (!response.data || !Array.isArray(response.data.results)) {
+    if (
+      !response.data ||
+      !response.data.results ||
+      !Array.isArray(response.data.results)
+    ) {
       throw new Error("Invalid response format from TMDB API");
     }
 
